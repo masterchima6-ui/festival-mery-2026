@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mery World</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fondo de estrellas global -->
+  <div id="stars-bg"></div>
+  <div id="shooting-star"></div>
+
+  <!-- ==================== 1. PANTALLA DE ENTRADA ==================== -->
+  <section id="screen-entry" class="screen active">
+    <div class="entry-content">
+      <p id="entry-text-1" class="fade-text">Pide un deseo.</p>
+      <p id="entry-text-2" class="fade-text hidden">Ahora entra.</p>
+      <button id="btn-enter" class="btn-main hidden">ENTRAR ✦</button>
+    </div>
+  </section>
+
+  <!-- ==================== 2. BIENVENIDA ==================== -->
+  <section id="screen-welcome" class="screen">
+    <div class="welcome-content">
+      <div class="moon" id="welcome-moon"></div>
+      <h1 class="fade-in">Hola, Mery.</h1>
+      <p class="fade-in delay-1">Has encontrado un lugar<br>que no estaba destinado<br>a nadie más.</p>
+      <p class="fade-in delay-2">Explóralo a tu manera.</p>
+      <button id="btn-start" class="btn-main fade-in delay-3">COMENZAR ✨</button>
+    </div>
+  </section>
+
+  <!-- ==================== 3. EL UNIVERSO ==================== -->
+  <section id="screen-universe" class="screen">
+    <div class="universe-container">
+      <div class="planet" data-zone="noche" style="top: 18%; left: 22%;">
+        <span class="planet-icon">🌙</span>
+        <span class="planet-label">LA NOCHE</span>
+      </div>
+      <div class="planet" data-zone="constelacion" style="top: 28%; left: 68%;">
+        <span class="planet-icon">⭐</span>
+        <span class="planet-label">CONSTELACIÓN</span>
+      </div>
+      <div class="planet" data-zone="orbita" style="top: 58%; left: 18%;">
+        <span class="planet-icon">🪐</span>
+        <span class="planet-label">ÓRBITA</span>
+      </div>
+      <div class="planet locked" data-zone="luna-oculta" style="top: 62%; left: 65%;">
+        <span class="planet-icon">🌑</span>
+        <span class="planet-label">LA LUNA OCULTA</span>
+      </div>
+    </div>
+    <button id="btn-back-universe" class="btn-back hidden">← Volver</button>
+  </section>
+
+  <!-- ==================== 4. LA NOCHE ==================== -->
+  <section id="screen-noche" class="screen">
+    <div class="zone-header">
+      <button class="btn-back-zone">←</button>
+      <h2>LA NOCHE</h2>
+    </div>
+    <div class="noche-modes">
+      <button class="mode-btn" data-mode="dia">☀️ MODO DÍA</button>
+      <button class="mode-btn" data-mode="noche">🌙 MODO NOCHE</button>
+      <button class="mode-btn" data-mode="caos">🔥 MODO CAOS</button>
+      <button class="mode-btn" data-mode="mery">✨ MODO MERY</button>
+    </div>
+    <div id="player-container" class="player-container hidden">
+      <div class="player-visual">
+        <div class="vinyl"></div>
+      </div>
+      <h3 id="track-title">—</h3>
+      <p id="track-desc">—</p>
+      <div class="player-controls">
+        <button id="btn-play" class="btn-control">▶</button>
+      </div>
+      <audio id="audio-player" preload="none"></audio>
+    </div>
+  </section>
+
+  <!-- ==================== 5. CONSTELACIÓN ==================== -->
+  <section id="screen-constelacion" class="screen">
+    <div class="zone-header">
+      <button class="btn-back-zone">←</button>
+      <h2>CONSTELACIÓN</h2>
+    </div>
+    <div class="games-menu">
+      <button class="game-btn" data-game="stars">⭐ ATRAPA LAS ESTRELLAS</button>
+      <button class="game-btn" data-game="choose">🎯 ¿QUÉ ELEGIRÍA MERY?</button>
+    </div>
+
+    <!-- Juego 1: Atrapa las estrellas -->
+    <div id="game-stars" class="game-area hidden">
+      <div class="game-hud">
+        <span>Puntos: <strong id="stars-score">0</strong></span>
+        <span>Tiempo: <strong id="stars-time">15</strong>s</span>
+      </div>
+      <div id="stars-field"></div>
+      <div id="stars-result" class="game-result hidden">
+        <h3>Resultado</h3>
+        <p>Atrapaste <span id="final-stars">0</span> estrellas</p>
+        <button class="btn-main btn-restart-stars">Jugar de nuevo</button>
+        <button class="btn-secondary btn-back-games">Volver</button>
+      </div>
+    </div>
+
+    <!-- Juego 2: Qué elegiría Mery -->
+    <div id="game-choose" class="game-area hidden">
+      <div id="choose-question" class="choose-card">
+        <p class="q-number">Pregunta</p>
+        <h3 id="choose-text"></h3>
+        <div id="choose-options"></div>
+      </div>
+      <div id="choose-result" class="choose-result hidden">
+        <p id="choose-feedback"></p>
+        <button class="btn-main" id="btn-next-choose">Siguiente</button>
+      </div>
+      <div id="choose-end" class="game-result hidden">
+        <h3>Fin de la constelación</h3>
+        <p>Has explorado las estrellas de Mery.</p>
+        <button class="btn-main btn-back-games">Volver</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 6. ÓRBITA ==================== -->
+  <section id="screen-orbita" class="screen">
+    <div class="zone-header">
+      <button class="btn-back-zone">←</button>
+      <h2>ÓRBITA</h2>
+    </div>
+    <div id="orbita-content">
+      <div id="orbita-question" class="orbita-card">
+        <p class="q-number" id="orbita-num">Pregunta 01</p>
+        <h3 id="orbita-text"></h3>
+        <div id="orbita-options"></div>
+      </div>
+      <div id="orbita-feedback" class="orbita-feedback hidden">
+        <p id="orbita-reaction"></p>
+        <button class="btn-main" id="btn-next-orbita">Continuar</button>
+      </div>
+      <div id="orbita-end" class="game-result hidden">
+        <h3>Has completado la órbita.</h3>
+        <p>Puntuación: <strong id="orbita-score">0</strong> / <span id="orbita-total">0</span></p>
+        <button class="btn-main btn-restart-orbita">Reiniciar</button>
+        <button class="btn-secondary btn-back-zone-orbita">Volver al universo</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7. LA LUNA OCULTA ==================== -->
+  <section id="screen-luna-oculta" class="screen">
+    <div class="zone-header">
+      <button class="btn-back-zone">←</button>
+      <h2>LA LUNA OCULTA</h2>
+    </div>
+    <div id="luna-locked" class="luna-locked">
+      <div class="moon locked-moon"></div>
+      <p class="big-text">Todavía no.</p>
+      <p>Algunas cosas necesitan esperar<br>al momento correcto.</p>
+      <p class="date-reveal">22 · 09 · 2026</p>
+    </div>
+    <div id="luna-unlocked" class="luna-unlocked hidden">
+      <div class="moon"></div>
+      <p class="big-text">La luna se ha revelado.</p>
+      <p>Aquí podrás añadir el contenido especial<br>cuando llegue el día.</p>
+      <!-- Espacio preparado para contenido futuro -->
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+    
